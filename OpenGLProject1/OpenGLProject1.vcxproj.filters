@@ -33,4 +33,8 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="3.3.shader.fs" />
+    <None Include="3.3.shader.vs" />
+  </ItemGroup>
 </Project>
