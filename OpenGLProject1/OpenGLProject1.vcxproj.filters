@@ -36,5 +36,8 @@
   <ItemGroup>
     <None Include="3.3.shader.fs" />
     <None Include="3.3.shader.vs" />
+    <None Include="stb_image.h">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
