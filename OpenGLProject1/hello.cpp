@@ -10,27 +10,28 @@ const unsigned int SCR_HEIGHT = 600;
 
 const char* fragmentShaderSource2 = "#version 330 core\n"
 "out vec4 FragColor;\n"
-"uniform vec4 ourColor;\n"
+"in vec3 ourColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = ourColor;\n"
+"   FragColor = vec4(ourColor,1.0);\n"
 "}\n\0";
 
 
 const char* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 aPos;\n"
-"out vec4 vertexColor;\n"
+"layout (location = 1) in vec3 aColor;\n"
+"out vec3 ourColor;\n"
 "void main()\n"
 "{\n"
 "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-"   vertexColor = vec4(0.5,0.0,0.0,1.0);\n"
+"   ourColor = aColor;\n"
 "}\0";
 const char* fragmentShaderSource = "#version 330 core\n"
 "out vec4 FragColor;\n"
-"uniform vec4 ourColor;\n"
+"in vec3 ourColor;\n"
 "void main()\n"
 "{\n"
-"   FragColor = ourColor;\n"
+"   FragColor = vec4(ourColor,1.0);\n"
 "}\n\0";
 
 int main()
@@ -189,20 +190,22 @@ int main()
     glGenBuffers(1, &VBO[1]);
     glBindVertexArray(VAO[1]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(secondTriangle), secondTriangle, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
     glEnableVertexAttribArray(0); //enable the vertex attribute
-
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
+	glEnableVertexAttribArray(1); //enable the vertex attribute
 
 
 	glGenVertexArrays(1, &VAO[0]); //generate our vertex array object
 	glGenBuffers(1, &VBO[0]); //generate our vertex buffer object
 	glBindVertexArray(VAO[0]); //bind our vertex array object
 	glBindBuffer(GL_ARRAY_BUFFER, VBO[0]); //give the vertex buffer object a type GL_ARRAY_BUFFER
-    glBufferData(GL_ARRAY_BUFFER, sizeof(firstTriangle), firstTriangle, GL_STATIC_DRAW); //give the vertex buffer object/ GL_ARRAY_BUFFER the data, type of data, size of data, data, type of draw
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //give the vertex buffer object/ GL_ARRAY_BUFFER the data, type of data, size of data, data, type of draw
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
 	glEnableVertexAttribArray(0); //enable the vertex attribute
-  
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float))); //tell opengl how to interpret the vertex data, location of vertex attribute, number of components, type of data, normalize, stride, offset
+	glEnableVertexAttribArray(1); //enable the vertex attribute
 
     //glBindBuffer(GL_ARRAY_BUFFER, 0);
     //                                          OPTIONAL
