@@ -202,6 +202,8 @@ int main()
         transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
         transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
 
+		glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f); // define an orthographic projection matrix
+
 		ourShader.use();
         unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
