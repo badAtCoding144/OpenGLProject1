@@ -12,6 +12,7 @@
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void processInput(GLFWwindow* window);
 
 // settings
@@ -27,6 +28,12 @@ glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f); //initialize camera position a
 float deltaTime = 0.0f;	// Time between current frame and last frame
 float lastFrame = 0.0f; // Time of last frame
 
+
+float lastX = 400, lastY = 300;
+float yaw;
+float pitch;
+bool firstMouse = true;
+
 int main()
 {
   
@@ -37,8 +44,7 @@ int main()
 
 
 
-    // glfw window creation
-    // --------------------
+
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
@@ -49,29 +55,23 @@ int main()
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    // glad: load all OpenGL function pointers
-    // ---------------------------------------
+
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
 
-    // build and compile our shader program
-    // ------------------------------------
-    Shader ourShader("3.3.shader.vs", "3.3.shader.fs"); // you can name your shader files however you like
+    Shader ourShader("3.3.shader.vs", "3.3.shader.fs"); 
 
 
-    glEnable(GL_DEPTH_TEST);//enable depth testing so that the cube will look 3D
+    glEnable(GL_DEPTH_TEST);
 
 
-
-
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
 
 
     float vertices[] = {
@@ -262,8 +262,18 @@ int main()
       
 
 		glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
- 
 		
+   
+
+        glm::vec3 direction;
+        direction.x = cos(glm::radians(yaw)); // Note that we convert the angle to radians first
+        direction.z = sin(glm::radians(yaw));
+        direction.y = sin(glm::radians(pitch));
+
+        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+        direction.y = sin(glm::radians(pitch));
+        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+
         ourShader.setMat4("projection", projection);
 		ourShader.setMat4("view", view);
             
@@ -329,5 +339,37 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
+}
+
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	float sensitivity = 0.1f;
+    if (firstMouse) // initially set to true
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+	float xoffset = xpos - lastX;
+	float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+	lastX = xpos;
+	lastY = ypos;
+
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	yaw += xoffset;
+	pitch += yoffset;
+
+	if (pitch > 89.0f)
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	glm::vec3 direction;
+	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	direction.y = sin(glm::radians(pitch));
+	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	cameraFront = glm::normalize(direction);
 }
 
