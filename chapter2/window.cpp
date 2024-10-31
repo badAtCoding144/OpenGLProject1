@@ -173,6 +173,8 @@ int main()
 		lightingShader.setVec3("objectColor", coral);	
 		lightingShader.setVec3("lightColor", lightColor);
 		lightingShader.setVec3("lightPos", lightPos);
+		lightingShader.setVec3("viewPos", camera.Position);
+
 
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
