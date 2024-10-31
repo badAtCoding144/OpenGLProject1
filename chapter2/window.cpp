@@ -31,7 +31,7 @@ glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 glm::vec3 coral(1.0f, 0.5f, 0.31f);
 
-glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+glm::vec3 lightColor(0.6f, 0.4f, 1.0f);
 
 int main()
 {
@@ -149,6 +149,7 @@ int main()
 	glEnableVertexAttribArray(0);
 
 
+
 	while (!glfwWindowShouldClose(window)) 
 	{
 		float currentFrame = static_cast<float> (glfwGetTime());
@@ -162,7 +163,8 @@ int main()
 
 		lightingShader.use();
 		lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);	
-		lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+		lightingShader.setVec3("lightColor", lightColor);
+
 
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 		glm::mat4 view = camera.GetViewMatrix();
@@ -182,6 +184,7 @@ int main()
 		model = glm::translate(model, lightPos);
 		model = glm::scale(model, glm::vec3(0.2f));
 		lightCubeShader.setMat4("model", model);
+		lightCubeShader.setVec3("lightColor", lightColor);
 		
 
 		glBindVertexArray(lightCubeVAO);
