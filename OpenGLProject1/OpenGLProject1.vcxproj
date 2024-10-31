@@ -133,11 +133,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="FPSCamera.h" />
     <ClInclude Include="hello.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="shader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="hello.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -146,6 +147,9 @@
     <None Include="3.3.shader.fs" />
     <None Include="3.3.shader.vs" />
     <None Include="stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenGLProject1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
