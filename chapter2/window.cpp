@@ -170,11 +170,17 @@ int main()
 	char const* path = "container2.png";
 	unsigned int diffuseMap = loadTexture(path);
 
+	char const* path2 = "container2_specular.png";
+	unsigned int specularMap = loadTexture(path2);
+
 
 
 	lightingShader.use();
 	lightingShader.setInt("material.diffuse", 0);
+	lightingShader.setInt("material.specular", 1);
 	lightingShader.setVec3("lightPos", lightPos);
+
+
 
 
 
@@ -223,6 +229,9 @@ int main()
 		// bind diffuse map
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, diffuseMap);
+
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, specularMap);
 
 		// render the cube
 		glBindVertexArray(cubeVAO);
