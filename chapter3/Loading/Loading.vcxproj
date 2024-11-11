@@ -112,6 +112,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>"E:\3rdpartylibrariesforVS\Libs\glfw3.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,12 +132,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\chapter2\shader.h" />
-    <ClInclude Include="shader.h" />
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="mesh.h" />
+    <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="mesh.cpp" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
