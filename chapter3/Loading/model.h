@@ -15,6 +15,10 @@
 #include "mesh.h"
 #include "shader.h"
 
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
+
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -23,7 +27,7 @@
 #include <vector>
 using namespace std;
 
-unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
+inline unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
 
 class Model
 {
