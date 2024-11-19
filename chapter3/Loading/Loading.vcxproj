@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>E:\3rdpartylibrariesforVS\Include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\3rdpartylibrariesforVS\Libs;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>E:\3rdpartylibrariesforVS\Include\assimp;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -112,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>"E:\3rdpartylibrariesforVS\Libs\glfw3.lib";%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>"E:\3rdpartylibrariesforVS\Libs\glfw3.lib";"E:\3rdpartylibrariesforVS\Libs\assimp-vc143-mtd.lib";%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,7 +135,6 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="mesh.h" />
-    <ClCompile Include="model.cpp" />
     <ClCompile Include="model.h" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>

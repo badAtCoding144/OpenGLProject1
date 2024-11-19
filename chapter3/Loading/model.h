@@ -7,7 +7,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "stb_image.h"
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -15,9 +15,11 @@
 #include "mesh.h"
 #include "shader.h"
 
+#ifndef STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#endif
 
+#include "stb_image.h"
 
 #include <string>
 #include <fstream>
@@ -28,6 +30,8 @@
 using namespace std;
 
 inline unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
+
+
 
 class Model
 {
@@ -209,7 +213,7 @@ private:
 };
 
 
-unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
+inline unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
 {
     string filename = string(path);
     filename = directory + '/' + filename;
