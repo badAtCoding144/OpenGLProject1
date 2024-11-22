@@ -41,6 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
-    <None Include="DepthText.fs" />
+    <None Include="DepthTest.fs" />
   </ItemGroup>
 </Project>

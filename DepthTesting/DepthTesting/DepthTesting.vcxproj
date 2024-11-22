@@ -145,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
-    <None Include="DepthText.fs" />
+    <None Include="DepthTest.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
