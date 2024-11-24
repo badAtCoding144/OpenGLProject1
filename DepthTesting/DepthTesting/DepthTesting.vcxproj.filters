@@ -42,5 +42,6 @@
   <ItemGroup>
     <None Include="DepthTest.vs" />
     <None Include="DepthTest.fs" />
+    <None Include="DepthTestBorder.fs" />
   </ItemGroup>
 </Project>
