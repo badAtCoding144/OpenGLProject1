@@ -192,7 +192,14 @@ int main()
         // render
         // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glEnable(GL_STENCIL_TEST);
+
+		//glStencilFunc(GL_EQUAL, 1, 0xFF); // all fragments should pass the stencil
+        glStencilMask(0xFF); // each bit is written to the stencil buffer as is
+        glStencilMask(0x00); // each bit ends up as 0 in the stencil buffer (disabling writes)
+
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
         shader.use();
         glm::mat4 model = glm::mat4(1.0f);
