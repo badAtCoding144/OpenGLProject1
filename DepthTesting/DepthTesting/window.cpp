@@ -49,7 +49,6 @@ int main()
 
 
     // glfw window creation
-    // --------------------
     GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL)
     {
@@ -66,7 +65,6 @@ int main()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glad: load all OpenGL function pointers
-    // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -74,18 +72,16 @@ int main()
     }
 
     // configure global opengl state
-    // -----------------------------
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
-
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
     // build and compile shaders
-    // -------------------------
+
     Shader shader("DepthTest.vs", "DepthTest.fs");
 
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
     float cubeVertices[] = {
         // positions          // texture Coords
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
@@ -201,15 +197,14 @@ int main()
     glBindVertexArray(0);
 
     // load textures
-    // -------------
 	const char* path = "resources/textures/marble.jpg";
 	const char* path2 = "resources/textures/metal.png";
     unsigned int cubeTexture = loadTexture(path);
     unsigned int floorTexture = loadTexture(path2);
-	unsigned int grassTexture = loadTexture("resources/textures/grass.png");
+	unsigned int grassTexture = loadTexture("resources/textures/blending_transparent_window.png");
 
     // shader configuration
-    // --------------------
+
     shader.use();
     shader.setInt("texture1", 0);
 
@@ -217,21 +212,18 @@ int main()
   
 
     // render loop
-    // -----------
+
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-        // --------------------
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
         processInput(window);
 
         // render
-        // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -272,13 +264,11 @@ int main()
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
     glDeleteVertexArrays(1, &cubeVAO);
     glDeleteVertexArrays(1, &planeVAO);
     glDeleteBuffers(1, &cubeVBO);
@@ -289,7 +279,6 @@ int main()
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -306,7 +295,6 @@ void processInput(GLFWwindow* window)
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and 
@@ -315,7 +303,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 }
 
 // glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
     float xpos = static_cast<float>(xposIn);
@@ -338,14 +325,12 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
 // utility function for loading a 2D texture from file
-// ---------------------------------------------------
 unsigned int loadTexture(char const* path)
 {
     unsigned int textureID;
