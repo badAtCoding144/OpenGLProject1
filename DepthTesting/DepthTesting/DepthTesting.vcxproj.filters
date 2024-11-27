@@ -38,6 +38,9 @@
     <ClCompile Include="window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="framebufferexample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
@@ -45,5 +48,7 @@
     <None Include="DepthTestBorder.fs" />
     <None Include="FrameBuffers.vs" />
     <None Include="FrameBuffers.fs" />
+    <None Include="skybox.vs" />
+    <None Include="skybox.fs" />
   </ItemGroup>
 </Project>

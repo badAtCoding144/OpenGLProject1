@@ -140,6 +140,7 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="framebufferexample.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
@@ -149,6 +150,8 @@
     <None Include="DepthTestBorder.fs" />
     <None Include="FrameBuffers.fs" />
     <None Include="FrameBuffers.vs" />
+    <None Include="skybox.fs" />
+    <None Include="skybox.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
