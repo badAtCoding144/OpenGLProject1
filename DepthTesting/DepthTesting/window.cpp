@@ -75,8 +75,8 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
     glEnable(GL_CULL_FACE);
-    glCullFace(GL_FRONT);
-    glFrontFace(GL_CCW);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CW);
 
     glEnable(GL_BLEND);
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
@@ -161,6 +161,14 @@ int main()
         glm::vec3(0.5f, 0.0f, -0.6f)
     };
 
+    unsigned int fbo;
+	glGenFramebuffers(1, &fbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+
     unsigned int vegetationVAO, vegetationVBO;
 
 	glGenVertexArrays(1, &vegetationVAO);
@@ -220,6 +228,9 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glFrontFace(GL_CW);
         // per-frame time logic
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
@@ -260,7 +271,7 @@ int main()
         glBindVertexArray(vegetationVAO);
         glBindTexture(GL_TEXTURE_2D, grassTexture);
 
-
+		glDisable(GL_CULL_FACE);
         std::map<float, glm::vec3> sorted;
         for (unsigned int i = 0; i < vegetation.size(); i++)
         {
@@ -288,6 +299,7 @@ int main()
     glDeleteVertexArrays(1, &planeVAO);
     glDeleteBuffers(1, &cubeVBO);
     glDeleteBuffers(1, &planeVBO);
+    glDeleteFramebuffers(1, &fbo);
 
     glfwTerminate();
     return 0;
