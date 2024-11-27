@@ -193,7 +193,8 @@ int main()
     glBindVertexArray(skyboxVAO);
     glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-  
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
     vector<std::string> faces
     {
@@ -208,11 +209,11 @@ int main()
 
 
 
-    // load textures
-	const char* path = "resources/textures/container.jpg";
-	const char* path2 = "resources/textures/metal.png";
-    unsigned int cubeTexture = loadTexture(path);
-    unsigned int floorTexture = loadTexture(path2);
+ //   // load textures
+	//const char* path = "resources/textures/container.jpg";
+	//const char* path2 = "resources/textures/metal.png";
+ //   unsigned int cubeTexture = loadTexture(path);
+ //   unsigned int floorTexture = loadTexture(path2);
 
     shader.use();
     shader.setInt("skybox", 0);
