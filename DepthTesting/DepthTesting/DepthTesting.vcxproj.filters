@@ -43,5 +43,7 @@
     <None Include="DepthTest.vs" />
     <None Include="DepthTest.fs" />
     <None Include="DepthTestBorder.fs" />
+    <None Include="FrameBuffers.vs" />
+    <None Include="FrameBuffers.fs" />
   </ItemGroup>
 </Project>

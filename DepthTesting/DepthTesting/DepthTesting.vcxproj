@@ -147,6 +147,8 @@
     <None Include="DepthTest.vs" />
     <None Include="DepthTest.fs" />
     <None Include="DepthTestBorder.fs" />
+    <None Include="FrameBuffers.fs" />
+    <None Include="FrameBuffers.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
