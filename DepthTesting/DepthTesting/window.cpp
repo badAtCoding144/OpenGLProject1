@@ -161,11 +161,6 @@ int main()
         glm::vec3(0.5f, 0.0f, -0.6f)
     };
 
-    glTexImage2D(
-        GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, 800, 600, 0,
-        GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL
-    );
-
 
 
     unsigned int fbo;
