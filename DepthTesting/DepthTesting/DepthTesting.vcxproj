@@ -150,6 +150,7 @@
     <None Include="DepthTestBorder.fs" />
     <None Include="FrameBuffers.fs" />
     <None Include="FrameBuffers.vs" />
+    <None Include="Sharpening.fs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
   </ItemGroup>

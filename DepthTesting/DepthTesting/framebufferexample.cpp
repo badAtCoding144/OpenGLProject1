@@ -333,7 +333,7 @@
 //
 //        glDisable(GL_DEPTH_TEST); // disable depth test so screen-space quad isn't discarded due to depth test.
 //
-//        screenShader.use();
+//        screenShader.use();     
 //        glBindVertexArray(quadVAO);
 //        glBindTexture(GL_TEXTURE_2D, textureColorbuffer);	// use the color attachment texture as the texture of the quad plane
 //        glDrawArrays(GL_TRIANGLES, 0, 6);

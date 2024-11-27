@@ -76,9 +76,6 @@ int main()
     glEnable(GL_DEPTH_TEST);
 
 
-
-
-
     // build and compile shaders
 
     Shader shader("DepthTest.vs", "DepthTest.fs");
@@ -130,6 +127,7 @@ int main()
         -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
         -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
     };
+
     float skyboxVertices[] = {
         // positions          
         -1.0f,  1.0f, -1.0f,
@@ -207,8 +205,9 @@ int main()
     };
     unsigned int cubemapTexture = loadCubemap(faces);
 
-
-
+    stbi_set_flip_vertically_on_load(true);
+    Model ourModel("resources/objects/backpack/backpack.obj");
+    stbi_set_flip_vertically_on_load(false);
  //   // load textures
 	//const char* path = "resources/textures/container.jpg";
 	//const char* path2 = "resources/textures/metal.png";
@@ -228,17 +227,17 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-        // --------------------
+   
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
+
         processInput(window);
 
         // render
-        // ------
+      
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -247,16 +246,16 @@ int main()
         glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        shader.setMat4("model", model);
+       
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
         shader.setVec3("cameraPos", camera.Position);
-        // cubes
-        glBindVertexArray(cubeVAO);
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
+        // model
+ 
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        shader.setMat4("model", model);
+        ourModel.Draw(shader);
 
         // draw skybox as last
         glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
