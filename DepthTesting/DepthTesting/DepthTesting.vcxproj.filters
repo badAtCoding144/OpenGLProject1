@@ -65,6 +65,8 @@
     <None Include="8.blue.fs" />
     <None Include="8.yellow.fs" />
     <None Include="GeometryShader.gs" />
+    <None Include="NormalVis.vs" />
+    <None Include="NormalVis.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />

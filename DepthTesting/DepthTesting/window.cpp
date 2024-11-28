@@ -79,7 +79,7 @@ int main()
     // build and compile shaders
 
     Shader shader("DepthTest.vs", "DepthTest.fs");
-
+    Shader normalShader("NormalVis.vs", "NormalVis.fs", "GeometryShader.gs");
 	Shader skyboxShader("skybox.vs", "skybox.fs");
 
 
@@ -214,8 +214,6 @@ int main()
  //   unsigned int cubeTexture = loadTexture(path);
  //   unsigned int floorTexture = loadTexture(path2);
 
-    shader.use();
-    shader.setInt("skybox", 0);
 
     skyboxShader.use();
     skyboxShader.setInt("skybox", 0);
@@ -227,35 +225,36 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-   
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-
         processInput(window);
 
         // render
-      
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // draw scene as normal
-        shader.use();
+        // configure transformation matrices
+        glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();;
         glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-       
-        shader.setMat4("view", view);
+        shader.use();
         shader.setMat4("projection", projection);
-        shader.setVec3("cameraPos", camera.Position);
-        // model
- 
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+        shader.setMat4("view", view);
         shader.setMat4("model", model);
+
+        // draw model as usual
         ourModel.Draw(shader);
+
+        // then draw model with normal visualizing geometry shader
+        normalShader.use();
+        normalShader.setMat4("projection", projection);
+        normalShader.setMat4("view", view);
+        normalShader.setMat4("model", model);
+
+        ourModel.Draw(normalShader);
 
         // draw skybox as last
         glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content

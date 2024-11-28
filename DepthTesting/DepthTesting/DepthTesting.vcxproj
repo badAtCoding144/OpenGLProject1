@@ -159,6 +159,8 @@
     <None Include="GeometryShader.gs" />
     <None Include="InterFaceBlockEx.fs" />
     <None Include="InterfaceBlockEx.vs" />
+    <None Include="NormalVis.fs" />
+    <None Include="NormalVis.vs" />
     <None Include="Sharpening.fs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
