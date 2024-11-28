@@ -58,6 +58,6 @@
     <None Include="InterFaceBlockEx.fs" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="UnifromBlockLayout.txt" />
+    <Text Include="GLSLBuiltInVariables.txt" />
   </ItemGroup>
 </Project>

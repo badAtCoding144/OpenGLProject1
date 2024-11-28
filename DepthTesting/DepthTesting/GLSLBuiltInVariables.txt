@@ -1,0 +1,107 @@
+if we say glEnable(GL_PROGRAM_POINT_SIZE) then we can use gl_PointSize in the vertex shader to set the size of the point.
+
+for example
+void main()
+{
+    gl_Position = projection * view * model * vec4(aPos, 1.0);    
+    gl_PointSize = gl_Position.z;    
+} 
+makes the point size bigger the further the point is away from the camera.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+gl_FragCoord is used to find the location of the fragment in the fragment shader and we can use this to set colours and conditions based on the location
+void main()
+{             
+    if(gl_FragCoord.x < 400)
+        FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    else
+        FragColor = vec4(0.0, 1.0, 0.0, 1.0);        
+}  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+gl_FrontFacing, we configure this using glEnable(GL_CULL_FACE) and glCullFace(GL_BACK) or glCullFace(GL_FRONT) to cull the front or back faces respectively.
+using our vertex order either clockwise or counter clockwise.
+
+#version 330 core
+out vec4 FragColor;
+  
+in vec2 TexCoords;
+
+uniform sampler2D frontTexture;
+uniform sampler2D backTexture;
+
+void main()
+{             
+    if(gl_FrontFacing)
+        FragColor = texture(frontTexture, TexCoords);
+    else
+        FragColor = texture(backTexture, TexCoords);
+}  
+//this example sets a back and front texture
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+gl_FragDepth is used to set the depth of the fragment in the fragment shader.
+//this example sets the depth of the fragment to be 0.1 more than the current depth after the initial depth test
+
+#version 420 core // note the GLSL version!
+out vec4 FragColor;
+layout (depth_greater) out float gl_FragDepth;
+
+void main()
+{             
+    FragColor = vec4(1.0);
+    gl_FragDepth = gl_FragCoord.z + 0.1;
+}  
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+look at interfaceBlockEx.vs/fs for an example of using interface blocks
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+layout (std140) uniform ExampleBlock
+{
+                     // base alignment  // aligned offset
+    float value;     // 4               // 0 
+    vec3 vector;     // 16              // 16  (offset must be multiple of 16 so 4->16)
+    mat4 matrix;     // 16              // 32  (column 0)
+                     // 16              // 48  (column 1)
+                     // 16              // 64  (column 2)
+                     // 16              // 80  (column 3)
+    float values[3]; // 16              // 96  (values[0])
+                     // 16              // 112 (values[1])
+                     // 16              // 128 (values[2])
+    bool boolean;    // 4               // 144
+    int integer;     // 4               // 148
+}; 
+
+
+Type 	                                        Layout rule
+Scalar e.g. int or bool 	                    Each scalar has a base alignment of N.
+Vector 	Either 2N or 4N.                        This means that a vec3 has a base alignment of 4N.
+Array of scalars or vectors 	                Each element has a base alignment equal to that of a vec4.
+Matrices 	                                    Stored as a large array of column vectors, where each of those vectors has a base alignment of vec4.
+Struct 	                                        Equal to the computed size of its elements according to the previous rules, but padded to a multiple of the size of a vec4.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+how to use a unifrom buffer in C++
+
+unsigned int uboExampleBlock;
+glGenBuffers(1, &uboExampleBlock);
+glBindBuffer(GL_UNIFORM_BUFFER, uboExampleBlock);
+glBufferData(GL_UNIFORM_BUFFER, 152, NULL, GL_STATIC_DRAW); // allocate 152 bytes of memory
+glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+to set a shader uniform block to a specific binding point we call
+
+unsigned int lights_index = glGetUniformBlockIndex(shaderA.ID, "Lights");   
+glUniformBlockBinding(shaderA.ID, lights_index, 2);
+
+we can do this for each shader that uses the uniform block
+then we bind the uniform buffer to the binding point
+
+glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboExampleBlock);
+//or
+glBindBufferRange(GL_UNIFORM_BUFFER, 2, uboExampleBlock, 0, 152);
