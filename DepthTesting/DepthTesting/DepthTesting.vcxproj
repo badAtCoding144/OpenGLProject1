@@ -143,8 +143,14 @@
     <ClCompile Include="framebufferexample.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="window.cpp" />
+    <ClCompile Include="windowBufferObjEx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="8.advanced_glsl.vs" />
+    <None Include="8.blue.fs" />
+    <None Include="8.green.fs" />
+    <None Include="8.red.fs" />
+    <None Include="8.yellow.fs" />
     <None Include="DepthTest.vs" />
     <None Include="DepthTest.fs" />
     <None Include="DepthTestBorder.fs" />

@@ -105,3 +105,10 @@ then we bind the uniform buffer to the binding point
 glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboExampleBlock);
 //or
 glBindBufferRange(GL_UNIFORM_BUFFER, 2, uboExampleBlock, 0, 152);
+
+we then update the buffer data using 
+
+glBindBuffer(GL_UNIFORM_BUFFER, uboExampleBlock);
+int b = true; // bools in GLSL are represented as 4 bytes, so we store it in an integer
+glBufferSubData(GL_UNIFORM_BUFFER, 144, 4, &b); 
+glBindBuffer(GL_UNIFORM_BUFFER, 0);

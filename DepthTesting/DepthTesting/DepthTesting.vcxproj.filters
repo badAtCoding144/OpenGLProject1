@@ -41,6 +41,9 @@
     <ClCompile Include="framebufferexample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="windowBufferObjEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
@@ -56,6 +59,11 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="InterFaceBlockEx.fs" />
+    <None Include="8.advanced_glsl.vs" />
+    <None Include="8.red.fs" />
+    <None Include="8.green.fs" />
+    <None Include="8.blue.fs" />
+    <None Include="8.yellow.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />
