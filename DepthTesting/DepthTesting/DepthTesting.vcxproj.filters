@@ -51,5 +51,13 @@
     <None Include="skybox.vs" />
     <None Include="skybox.fs" />
     <None Include="Sharpening.fs" />
+    <None Include="uniformBufferEx.vs" />
+    <None Include="InterfaceBlockEx.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="InterFaceBlockEx.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UnifromBlockLayout.txt" />
   </ItemGroup>
 </Project>

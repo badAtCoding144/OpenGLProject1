@@ -150,9 +150,15 @@
     <None Include="DepthTestBorder.fs" />
     <None Include="FrameBuffers.fs" />
     <None Include="FrameBuffers.vs" />
+    <None Include="InterFaceBlockEx.fs" />
+    <None Include="InterfaceBlockEx.vs" />
     <None Include="Sharpening.fs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
+    <None Include="uniformBufferEx.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="UnifromBlockLayout.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
