@@ -156,6 +156,7 @@
     <None Include="DepthTestBorder.fs" />
     <None Include="FrameBuffers.fs" />
     <None Include="FrameBuffers.vs" />
+    <None Include="GeometryShader.gs" />
     <None Include="InterFaceBlockEx.fs" />
     <None Include="InterfaceBlockEx.vs" />
     <None Include="Sharpening.fs" />
