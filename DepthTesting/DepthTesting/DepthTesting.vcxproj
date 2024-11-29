@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="framebufferexample.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="InstancingExample.cpp" />
     <ClCompile Include="window.cpp" />
     <ClCompile Include="windowBufferObjEx.cpp" />
   </ItemGroup>
@@ -160,6 +161,8 @@
     <None Include="houseDrawing.fs" />
     <None Include="houseDrawing.gs" />
     <None Include="houseDrawing.vs" />
+    <None Include="InstancingEx.fs" />
+    <None Include="InstancingEx.vs" />
     <None Include="InterFaceBlockEx.fs" />
     <None Include="InterfaceBlockEx.vs" />
     <None Include="NormalVis.fs" />
