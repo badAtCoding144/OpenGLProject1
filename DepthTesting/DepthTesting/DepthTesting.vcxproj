@@ -140,6 +140,7 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AntiAliasing.cpp" />
     <ClCompile Include="framebufferexample.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="InstancingEx3D.cpp" />
@@ -153,6 +154,10 @@
     <None Include="8.green.fs" />
     <None Include="8.red.fs" />
     <None Include="8.yellow.fs" />
+    <None Include="aaPost.fs" />
+    <None Include="aaPost.vs" />
+    <None Include="antiAliasing.fs" />
+    <None Include="antiAliasing.vs" />
     <None Include="Asteroid.fs" />
     <None Include="Asteroid.vs" />
     <None Include="DepthTest.vs" />

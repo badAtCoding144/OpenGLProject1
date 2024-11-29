@@ -50,6 +50,9 @@
     <ClCompile Include="InstancingEx3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AntiAliasing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
@@ -82,6 +85,18 @@
     <None Include="Asteroid.fs" />
     <None Include="planet.vs" />
     <None Include="planet.fs" />
+    <None Include="antiAliasing.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="antiAliasing.fs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="aaPost.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="aaPost.fs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />

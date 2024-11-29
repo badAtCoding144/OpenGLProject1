@@ -1,8 +1,8 @@
 //#include <glad/glad.h>
-//#include <GLFW/glfw3.h>
+//#include <glfw/glfw3.h>
 //
-//#ifndef STB_IMAGE_IMPLEMENTATION
-//#define STB_IMAGE_IMPLEMENTATION
+//#ifndef stb_image_implementation
+//#define stb_image_implementation
 //#endif
 //
 //#include "stb_image.h"
@@ -17,73 +17,73 @@
 //
 //#include <iostream>
 //
-//void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-//void mouse_callback(GLFWwindow* window, double xpos, double ypos);
-//void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-//void processInput(GLFWwindow* window);
-//unsigned int loadTexture(const char* path);
-//unsigned int loadCubemap(vector<std::string> faces);
+//void framebuffer_size_callback(glfwwindow* window, int width, int height);
+//void mouse_callback(glfwwindow* window, double xpos, double ypos);
+//void scroll_callback(glfwwindow* window, double xoffset, double yoffset);
+//void processinput(glfwwindow* window);
+//unsigned int loadtexture(const char* path);
+//unsigned int loadcubemap(vector<std::string> faces);
 //
 //// settings
-//const unsigned int SCR_WIDTH = 800;
-//const unsigned int SCR_HEIGHT = 600;
+//const unsigned int scr_width = 800;
+//const unsigned int scr_height = 600;
 //
 //// camera
-//Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-//float lastX = (float)SCR_WIDTH / 2.0;
-//float lastY = (float)SCR_HEIGHT / 2.0;
-//bool firstMouse = true;
+//camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+//float lastx = (float)scr_width / 2.0;
+//float lasty = (float)scr_height / 2.0;
+//bool firstmouse = true;
 //
 //// timing
-//float deltaTime = 0.0f;
-//float lastFrame = 0.0f;
+//float deltatime = 0.0f;
+//float lastframe = 0.0f;
 //
 //int main()
 //{
 //
 //    
-//    glfwInit();
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-//    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-//    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+//    glfwinit();
+//    glfwwindowhint(glfw_context_version_major, 3);
+//    glfwwindowhint(glfw_context_version_minor, 3);
+//    glfwwindowhint(glfw_opengl_profile, glfw_opengl_core_profile);
 //
 //
 //
 //    // glfw window creation
-//    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-//    if (window == NULL)
+//    glfwwindow* window = glfwcreatewindow(scr_width, scr_height, "learnopengl", null, null);
+//    if (window == null)
 //    {
-//        std::cout << "Failed to create GLFW window" << std::endl;
-//        glfwTerminate();
+//        std::cout << "failed to create glfw window" << std::endl;
+//        glfwterminate();
 //        return -1;
 //    }
-//    glfwMakeContextCurrent(window);
-//    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-//    glfwSetCursorPosCallback(window, mouse_callback);
-//    glfwSetScrollCallback(window, scroll_callback);
+//    glfwmakecontextcurrent(window);
+//    glfwsetframebuffersizecallback(window, framebuffer_size_callback);
+//    glfwsetcursorposcallback(window, mouse_callback);
+//    glfwsetscrollcallback(window, scroll_callback);
 //
-//    // tell GLFW to capture our mouse
-//    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+//    // tell glfw to capture our mouse
+//    glfwsetinputmode(window, glfw_cursor, glfw_cursor_disabled);
 //
-//    // glad: load all OpenGL function pointers
-//    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+//    // glad: load all opengl function pointers
+//    if (!gladloadglloader((gladloadproc)glfwgetprocaddress))
 //    {
-//        std::cout << "Failed to initialize GLAD" << std::endl;
+//        std::cout << "failed to initialize glad" << std::endl;
 //        return -1;
 //    }
 //
 //    // configure global opengl state
-//    glEnable(GL_DEPTH_TEST);
+//    glenable(gl_depth_test);
 //
 //
 //    // build and compile shaders
 //
-//    Shader shader("DepthTest.vs", "DepthTest.fs");
-//    Shader normalShader("NormalVis.vs", "NormalVis.fs", "GeometryShader.gs");
-//	Shader skyboxShader("skybox.vs", "skybox.fs");
+//    shader shader("depthtest.vs", "depthtest.fs");
+//    shader normalshader("normalvis.vs", "normalvis.fs", "geometryshader.gs");
+//	shader skyboxshader("skybox.vs", "skybox.fs");
 //
 //
-//    float cubeVertices[] = {
+//    float cubevertices[] = {
 //        // positions          // normals
 //        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 //         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -128,7 +128,7 @@
 //        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 //    };
 //
-//    float skyboxVertices[] = {
+//    float skyboxvertices[] = {
 //        // positions          
 //        -1.0f,  1.0f, -1.0f,
 //        -1.0f, -1.0f, -1.0f,
@@ -173,26 +173,26 @@
 //         1.0f, -1.0f,  1.0f
 //    };
 //
-//    // cube VAO
-//    unsigned int cubeVAO, cubeVBO;
-//    glGenVertexArrays(1, &cubeVAO);
-//    glGenBuffers(1, &cubeVBO);
-//    glBindVertexArray(cubeVAO);
-//    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-//    glEnableVertexAttribArray(1);
-//    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-//    // skybox VAO
-//    unsigned int skyboxVAO, skyboxVBO;
-//    glGenVertexArrays(1, &skyboxVAO);
-//    glGenBuffers(1, &skyboxVBO);
-//    glBindVertexArray(skyboxVAO);
-//    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+//    // cube vao
+//    unsigned int cubevao, cubevbo;
+//    glgenvertexarrays(1, &cubevao);
+//    glgenbuffers(1, &cubevbo);
+//    glbindvertexarray(cubevao);
+//    glbindbuffer(gl_array_buffer, cubevbo);
+//    glbufferdata(gl_array_buffer, sizeof(cubevertices), &cubevertices, gl_static_draw);
+//    glenablevertexattribarray(0);
+//    glvertexattribpointer(0, 3, gl_float, gl_false, 6 * sizeof(float), (void*)0);
+//    glenablevertexattribarray(1);
+//    glvertexattribpointer(1, 3, gl_float, gl_false, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+//    // skybox vao
+//    unsigned int skyboxvao, skyboxvbo;
+//    glgenvertexarrays(1, &skyboxvao);
+//    glgenbuffers(1, &skyboxvbo);
+//    glbindvertexarray(skyboxvao);
+//    glbindbuffer(gl_array_buffer, skyboxvbo);
+//    glbufferdata(gl_array_buffer, sizeof(skyboxvertices), &skyboxvertices, gl_static_draw);
+//    glenablevertexattribarray(0);
+//    glvertexattribpointer(0, 3, gl_float, gl_false, 3 * sizeof(float), (void*)0);
 //
 //    vector<std::string> faces
 //    {
@@ -203,211 +203,211 @@
 //        "skybox/front.jpg",
 //        "skybox/back.jpg",
 //    };
-//    unsigned int cubemapTexture = loadCubemap(faces);
+//    unsigned int cubemaptexture = loadcubemap(faces);
 //
 //    stbi_set_flip_vertically_on_load(true);
-//    Model ourModel("resources/objects/backpack/backpack.obj");
+//    model ourmodel("resources/objects/backpack/backpack.obj");
 //    stbi_set_flip_vertically_on_load(false);
 // //   // load textures
 //	//const char* path = "resources/textures/container.jpg";
 //	//const char* path2 = "resources/textures/metal.png";
-// //   unsigned int cubeTexture = loadTexture(path);
-// //   unsigned int floorTexture = loadTexture(path2);
+// //   unsigned int cubetexture = loadtexture(path);
+// //   unsigned int floortexture = loadtexture(path2);
 //
 //
-//    skyboxShader.use();
-//    skyboxShader.setInt("skybox", 0);
+//    skyboxshader.use();
+//    skyboxshader.setint("skybox", 0);
 //
-//   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//   // glpolygonmode(gl_front_and_back, gl_line);
 //
 //    // render loop
 //
-//    while (!glfwWindowShouldClose(window))
+//    while (!glfwwindowshouldclose(window))
 //    {
 //        // per-frame time logic
-//        float currentFrame = static_cast<float>(glfwGetTime());
-//        deltaTime = currentFrame - lastFrame;
-//        lastFrame = currentFrame;
+//        float currentframe = static_cast<float>(glfwgettime());
+//        deltatime = currentframe - lastframe;
+//        lastframe = currentframe;
 //
-//		normalShader.setFloat("time", glfwGetTime());
+//		normalshader.setfloat("time", glfwgettime());
 //        // input
-//        processInput(window);
+//        processinput(window);
 //
 //        // render
-//        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        glclearcolor(0.1f, 0.1f, 0.1f, 1.0f);
+//        glclear(gl_color_buffer_bit | gl_depth_buffer_bit);
 //
 //        // configure transformation matrices
-//        glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
-//        glm::mat4 view = camera.GetViewMatrix();;
+//        glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)scr_width / (float)scr_height, 1.0f, 100.0f);
+//        glm::mat4 view = camera.getviewmatrix();;
 //        glm::mat4 model = glm::mat4(1.0f);
 //        shader.use();
-//        shader.setMat4("projection", projection);
-//        shader.setMat4("view", view);
-//        shader.setMat4("model", model);
+//        shader.setmat4("projection", projection);
+//        shader.setmat4("view", view);
+//        shader.setmat4("model", model);
 //
 //        // draw model as usual
-//        ourModel.Draw(shader);
+//        ourmodel.draw(shader);
 //
 //        // then draw model with normal visualizing geometry shader
-//        normalShader.use();
-//        normalShader.setMat4("projection", projection);
-//        normalShader.setMat4("view", view);
-//        normalShader.setMat4("model", model);
+//        normalshader.use();
+//        normalshader.setmat4("projection", projection);
+//        normalshader.setmat4("view", view);
+//        normalshader.setmat4("model", model);
 //
-//        ourModel.Draw(normalShader);
+//        ourmodel.draw(normalshader);
 //
 //        // draw skybox as last
-//        glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
-//        skyboxShader.use();
-//        view = glm::mat4(glm::mat3(camera.GetViewMatrix())); // remove translation from the view matrix
-//        skyboxShader.setMat4("view", view);
-//        skyboxShader.setMat4("projection", projection);
+//        gldepthfunc(gl_lequal);  // change depth function so depth test passes when values are equal to depth buffer's content
+//        skyboxshader.use();
+//        view = glm::mat4(glm::mat3(camera.getviewmatrix())); // remove translation from the view matrix
+//        skyboxshader.setmat4("view", view);
+//        skyboxshader.setmat4("projection", projection);
 //        // skybox cube
-//        glBindVertexArray(skyboxVAO);
-//        glActiveTexture(GL_TEXTURE0);
-//        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-//        glDrawArrays(GL_TRIANGLES, 0, 36);
-//        glBindVertexArray(0);
-//        glDepthFunc(GL_LESS); // set depth function back to default
+//        glbindvertexarray(skyboxvao);
+//        glactivetexture(gl_texture0);
+//        glbindtexture(gl_texture_cube_map, cubemaptexture);
+//        gldrawarrays(gl_triangles, 0, 36);
+//        glbindvertexarray(0);
+//        gldepthfunc(gl_less); // set depth function back to default
 //
-//        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+//        // glfw: swap buffers and poll io events (keys pressed/released, mouse moved etc.)
 //        // -------------------------------------------------------------------------------
-//        glfwSwapBuffers(window);
-//        glfwPollEvents();
+//        glfwswapbuffers(window);
+//        glfwpollevents();
 //    }
 //
 //    // optional: de-allocate all resources once they've outlived their purpose:
-//    glDeleteVertexArrays(1, &cubeVAO);
-//    glDeleteVertexArrays(1, &skyboxVAO);
-//    glDeleteBuffers(1, &cubeVBO);
-//    glDeleteBuffers(1, &skyboxVBO);
+//    gldeletevertexarrays(1, &cubevao);
+//    gldeletevertexarrays(1, &skyboxvao);
+//    gldeletebuffers(1, &cubevbo);
+//    gldeletebuffers(1, &skyboxvbo);
 //
-//    glfwTerminate();
+//    glfwterminate();
 //    return 0;
 //}
 //
-//// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-//void processInput(GLFWwindow* window)
+//// process all input: query glfw whether relevant keys are pressed/released this frame and react accordingly
+//void processinput(glfwwindow* window)
 //{
-//    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-//        glfwSetWindowShouldClose(window, true);
+//    if (glfwgetkey(window, glfw_key_escape) == glfw_press)
+//        glfwsetwindowshouldclose(window, true);
 //
-//    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-//        camera.ProcessKeyboard(FORWARD, deltaTime);
-//    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-//        camera.ProcessKeyboard(BACKWARD, deltaTime);
-//    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-//        camera.ProcessKeyboard(LEFT, deltaTime);
-//    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-//        camera.ProcessKeyboard(RIGHT, deltaTime);
+//    if (glfwgetkey(window, glfw_key_w) == glfw_press)
+//        camera.processkeyboard(forward, deltatime);
+//    if (glfwgetkey(window, glfw_key_s) == glfw_press)
+//        camera.processkeyboard(backward, deltatime);
+//    if (glfwgetkey(window, glfw_key_a) == glfw_press)
+//        camera.processkeyboard(left, deltatime);
+//    if (glfwgetkey(window, glfw_key_d) == glfw_press)
+//        camera.processkeyboard(right, deltatime);
 //}
 //
-//// glfw: whenever the window size changed (by OS or user resize) this callback function executes
-//void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+//// glfw: whenever the window size changed (by os or user resize) this callback function executes
+//void framebuffer_size_callback(glfwwindow* window, int width, int height)
 //{
 //    // make sure the viewport matches the new window dimensions; note that width and 
 //    // height will be significantly larger than specified on retina displays.
-//    glViewport(0, 0, width, height);
+//    glviewport(0, 0, width, height);
 //}
 //
 //// glfw: whenever the mouse moves, this callback is called
-//void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+//void mouse_callback(glfwwindow* window, double xposin, double yposin)
 //{
-//    float xpos = static_cast<float>(xposIn);
-//    float ypos = static_cast<float>(yposIn);
+//    float xpos = static_cast<float>(xposin);
+//    float ypos = static_cast<float>(yposin);
 //
-//    if (firstMouse)
+//    if (firstmouse)
 //    {
-//        lastX = xpos;
-//        lastY = ypos;
-//        firstMouse = false;
+//        lastx = xpos;
+//        lasty = ypos;
+//        firstmouse = false;
 //    }
 //
-//    float xoffset = xpos - lastX;
-//    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+//    float xoffset = xpos - lastx;
+//    float yoffset = lasty - ypos; // reversed since y-coordinates go from bottom to top
 //
-//    lastX = xpos;
-//    lastY = ypos;
+//    lastx = xpos;
+//    lasty = ypos;
 //
-//    camera.ProcessMouseMovement(xoffset, yoffset);
+//    camera.processmousemovement(xoffset, yoffset);
 //}
 //
 //// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-//void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+//void scroll_callback(glfwwindow* window, double xoffset, double yoffset)
 //{
-//    camera.ProcessMouseScroll(static_cast<float>(yoffset));
+//    camera.processmousescroll(static_cast<float>(yoffset));
 //}
 //
-//// utility function for loading a 2D texture from file
-//unsigned int loadTexture(char const* path)
+//// utility function for loading a 2d texture from file
+//unsigned int loadtexture(char const* path)
 //{
-//    unsigned int textureID;
-//    glGenTextures(1, &textureID);
+//    unsigned int textureid;
+//    glgentextures(1, &textureid);
 //
-//    int width, height, nrComponents;
-//    unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
+//    int width, height, nrcomponents;
+//    unsigned char* data = stbi_load(path, &width, &height, &nrcomponents, 0);
 //    if (data)
 //    {
-//        GLenum format;
-//        if (nrComponents == 1)
-//            format = GL_RED;
-//        else if (nrComponents == 3)
-//            format = GL_RGB;
-//        else if (nrComponents == 4)
-//            format = GL_RGBA;
+//        glenum format;
+//        if (nrcomponents == 1)
+//            format = gl_red;
+//        else if (nrcomponents == 3)
+//            format = gl_rgb;
+//        else if (nrcomponents == 4)
+//            format = gl_rgba;
 //
-//        glBindTexture(GL_TEXTURE_2D, textureID);
-//        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-//        glGenerateMipmap(GL_TEXTURE_2D);
+//        glbindtexture(gl_texture_2d, textureid);
+//        glteximage2d(gl_texture_2d, 0, format, width, height, 0, format, gl_unsigned_byte, data);
+//        glgeneratemipmap(gl_texture_2d);
 //
 //
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT); // for this tutorial: use GL_CLAMP_TO_EDGE to prevent semi-transparent borders. Due to interpolation it takes texels from next repeat 
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, format == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//        gltexparameteri(gl_texture_2d, gl_texture_wrap_s, format == gl_rgba ? gl_clamp_to_edge : gl_repeat); // for this tutorial: use gl_clamp_to_edge to prevent semi-transparent borders. due to interpolation it takes texels from next repeat 
+//        gltexparameteri(gl_texture_2d, gl_texture_wrap_t, format == gl_rgba ? gl_clamp_to_edge : gl_repeat);
+//        gltexparameteri(gl_texture_2d, gl_texture_min_filter, gl_linear_mipmap_linear);
+//        gltexparameteri(gl_texture_2d, gl_texture_mag_filter, gl_linear);
 //
 //        stbi_image_free(data);
 //    }
 //    else
 //    {
-//        std::cout << "Texture failed to load at path: " << path << std::endl;
+//        std::cout << "texture failed to load at path: " << path << std::endl;
 //        stbi_image_free(data);
 //    }
 //
-//    return textureID;
+//    return textureid;
 //}
 //
-//unsigned int loadCubemap(vector<std::string> faces)
+//unsigned int loadcubemap(vector<std::string> faces)
 //{
-//    unsigned int textureID;
-//    glGenTextures(1, &textureID);
-//    glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+//    unsigned int textureid;
+//    glgentextures(1, &textureid);
+//    glbindtexture(gl_texture_cube_map, textureid);
 //
-//    int width, height, nrChannels;
+//    int width, height, nrchannels;
 //    for (unsigned int i = 0; i < faces.size(); i++)
 //    {
-//        unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+//        unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrchannels, 0);
 //        if (data)
 //        {
-//            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-//                0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
+//            glteximage2d(gl_texture_cube_map_positive_x + i,
+//                0, gl_rgb, width, height, 0, gl_rgb, gl_unsigned_byte, data
 //            );
 //            stbi_image_free(data);
 //        }
 //        else
 //        {
-//            std::cout << "Cubemap tex failed to load at path: " << faces[i] << std::endl;
+//            std::cout << "cubemap tex failed to load at path: " << faces[i] << std::endl;
 //            stbi_image_free(data);
 //        }
 //    }
-//    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+//    gltexparameteri(gl_texture_cube_map, gl_texture_min_filter, gl_linear);
+//    gltexparameteri(gl_texture_cube_map, gl_texture_mag_filter, gl_linear);
+//    gltexparameteri(gl_texture_cube_map, gl_texture_wrap_s, gl_clamp_to_edge);
+//    gltexparameteri(gl_texture_cube_map, gl_texture_wrap_t, gl_clamp_to_edge);
+//    gltexparameteri(gl_texture_cube_map, gl_texture_wrap_r, gl_clamp_to_edge);
 //
-//    return textureID;
+//    return textureid;
 //}
 //
 //
