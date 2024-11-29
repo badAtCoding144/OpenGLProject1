@@ -229,6 +229,7 @@ int main()
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
+		normalShader.setFloat("time", glfwGetTime());
         // input
         processInput(window);
 
