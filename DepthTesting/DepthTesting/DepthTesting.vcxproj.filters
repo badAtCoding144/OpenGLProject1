@@ -80,6 +80,8 @@
     <None Include="InstancingEx.fs" />
     <None Include="Asteroid.vs" />
     <None Include="Asteroid.fs" />
+    <None Include="planet.vs" />
+    <None Include="planet.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />

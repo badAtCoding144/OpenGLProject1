@@ -170,6 +170,8 @@
     <None Include="InterfaceBlockEx.vs" />
     <None Include="NormalVis.fs" />
     <None Include="NormalVis.vs" />
+    <None Include="planet.fs" />
+    <None Include="planet.vs" />
     <None Include="Sharpening.fs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
