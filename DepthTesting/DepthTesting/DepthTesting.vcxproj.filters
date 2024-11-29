@@ -67,6 +67,9 @@
     <None Include="GeometryShader.gs" />
     <None Include="NormalVis.vs" />
     <None Include="NormalVis.fs" />
+    <None Include="houseDrawing.gs" />
+    <None Include="houseDrawing.vs" />
+    <None Include="houseDrawing.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />

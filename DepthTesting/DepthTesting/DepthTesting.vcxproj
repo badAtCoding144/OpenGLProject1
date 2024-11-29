@@ -157,6 +157,9 @@
     <None Include="FrameBuffers.fs" />
     <None Include="FrameBuffers.vs" />
     <None Include="GeometryShader.gs" />
+    <None Include="houseDrawing.fs" />
+    <None Include="houseDrawing.gs" />
+    <None Include="houseDrawing.vs" />
     <None Include="InterFaceBlockEx.fs" />
     <None Include="InterfaceBlockEx.vs" />
     <None Include="NormalVis.fs" />
