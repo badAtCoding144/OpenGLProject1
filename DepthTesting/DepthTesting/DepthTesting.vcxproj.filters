@@ -47,6 +47,9 @@
     <ClCompile Include="InstancingExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InstancingEx3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DepthTest.vs" />
@@ -75,6 +78,8 @@
     <None Include="houseDrawing.fs" />
     <None Include="InstancingEx.vs" />
     <None Include="InstancingEx.fs" />
+    <None Include="Asteroid.vs" />
+    <None Include="Asteroid.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="GLSLBuiltInVariables.txt" />

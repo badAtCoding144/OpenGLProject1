@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClCompile Include="framebufferexample.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="InstancingEx3D.cpp" />
     <ClCompile Include="InstancingExample.cpp" />
     <ClCompile Include="window.cpp" />
     <ClCompile Include="windowBufferObjEx.cpp" />
@@ -152,6 +153,8 @@
     <None Include="8.green.fs" />
     <None Include="8.red.fs" />
     <None Include="8.yellow.fs" />
+    <None Include="Asteroid.fs" />
+    <None Include="Asteroid.vs" />
     <None Include="DepthTest.vs" />
     <None Include="DepthTest.fs" />
     <None Include="DepthTestBorder.fs" />
