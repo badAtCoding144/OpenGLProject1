@@ -74,7 +74,7 @@ int main()
 
     // configure global opengl state
     glEnable(GL_DEPTH_TEST);
-
+    //glEnable(GL_MULTISAMPLE);
 
     Shader shader("antiAliasing.vs", "antiAliasing.fs");
 	Shader screenShader("aaPost.vs", "aaPost.fs");
@@ -134,6 +134,7 @@ int main()
          1.0f,  1.0f,  1.0f, 1.0f
     };
 
+    //create VBO and VAO so we can draw a cube 
 	unsigned int cubeVBO, cubeVAO;
 	glGenVertexArrays(1, &cubeVAO);
 	glGenBuffers(1, &cubeVBO);
@@ -142,7 +143,8 @@ int main()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
+   
+    //create VBO and VAO so we can draw a quad on the whole screen
 	unsigned int quadVBO, quadVAO;
 	glGenVertexArrays(1, &quadVAO);
 	glGenBuffers(1, &quadVBO);
@@ -158,7 +160,7 @@ int main()
 
 
 
-
+	//create our framebuffer and texture to render to
     unsigned int framebuffer;
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
@@ -170,6 +172,7 @@ int main()
     glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, textureColorBufferMultiSampled, 0);
 
+	//create a renderbuffer object for depth and stencil attachment (we won't be sampling these)
     unsigned int rbo;
 	glGenRenderbuffers(1, &rbo);
 	glBindRenderbuffer(GL_RENDERBUFFER, rbo);
@@ -181,11 +184,11 @@ int main()
 		std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-
+	//create an intermediate framebuffer so we can resolve the multisampled buffer to a single sample texture
     unsigned int intermediateFBO;
     glGenFramebuffers(1, &intermediateFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
-  
+  //create the single sample texture we will use to draw on the quad
     unsigned int screenTexture;
     glGenTextures(1, &screenTexture);
     glBindTexture(GL_TEXTURE_2D, screenTexture);
@@ -199,7 +202,7 @@ int main()
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 
-
+	// set the screenTexture for the shader we use on the sampled image to 0 since we will change this?
     screenShader.use();
 	screenShader.setInt("screenTexture", 0);
 
