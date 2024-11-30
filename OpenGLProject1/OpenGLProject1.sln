@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loading", "..\chapter3\Load
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DepthTesting", "..\DepthTesting\DepthTesting\DepthTesting.vcxproj", "{524351A9-C395-4DF4-8B4F-30739898A487}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlinnPhongLightingDemo", "..\BlinnPhongLightingDemo\BlinnPhongLightingDemo.vcxproj", "{DD29542F-1746-4291-AE8B-FE93F35723DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -53,6 +55,14 @@ Global
 		{524351A9-C395-4DF4-8B4F-30739898A487}.Release|x64.Build.0 = Release|x64
 		{524351A9-C395-4DF4-8B4F-30739898A487}.Release|x86.ActiveCfg = Release|Win32
 		{524351A9-C395-4DF4-8B4F-30739898A487}.Release|x86.Build.0 = Release|Win32
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Debug|x64.ActiveCfg = Debug|x64
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Debug|x64.Build.0 = Debug|x64
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Debug|x86.ActiveCfg = Debug|Win32
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Debug|x86.Build.0 = Debug|Win32
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Release|x64.ActiveCfg = Release|x64
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Release|x64.Build.0 = Release|x64
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Release|x86.ActiveCfg = Release|Win32
+		{DD29542F-1746-4291-AE8B-FE93F35723DA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
