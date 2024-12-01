@@ -41,6 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BlinPhong.vs" />
-    <None Include="BlingPhong.fs" />
+    <None Include="BlinPhong.fs" />
   </ItemGroup>
 </Project>

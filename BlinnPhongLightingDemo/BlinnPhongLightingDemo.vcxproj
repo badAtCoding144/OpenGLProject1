@@ -144,7 +144,7 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BlingPhong.fs" />
+    <None Include="BlinPhong.fs" />
     <None Include="BlinPhong.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
