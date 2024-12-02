@@ -146,8 +146,14 @@
   <ItemGroup>
     <None Include="BlinPhong.fs" />
     <None Include="BlinPhong.vs" />
+    <None Include="debug_quad.fs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
+    <None Include="quad_debug.vs" />
+    <None Include="shadow_mapping.fs" />
+    <None Include="shadow_mapping.vs" />
+    <None Include="shadow_mapping_depth.fs" />
+    <None Include="shadow_mapping_depth.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
