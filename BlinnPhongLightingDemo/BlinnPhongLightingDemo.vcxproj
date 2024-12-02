@@ -146,6 +146,8 @@
   <ItemGroup>
     <None Include="BlinPhong.fs" />
     <None Include="BlinPhong.vs" />
+    <None Include="gamma.fs" />
+    <None Include="gamma.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
