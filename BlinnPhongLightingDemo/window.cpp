@@ -125,7 +125,7 @@ int main()
     // shader configuration
     shader.use();
     shader.setInt("diffuseTexture", 0);
-    shader.setInt("shadowMap", 1);
+    shader.setInt("depthMap", 1);
 
 
     // lighting info
