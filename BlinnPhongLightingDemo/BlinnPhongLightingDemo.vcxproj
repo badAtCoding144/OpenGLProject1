@@ -149,6 +149,11 @@
     <None Include="debug_quad.fs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
+    <None Include="ps.fs" />
+    <None Include="ps.vs" />
+    <None Include="ps_depth.fs" />
+    <None Include="ps_depth.gs" />
+    <None Include="ps_depth.vs" />
     <None Include="quad_debug.vs" />
     <None Include="shadow_mapping.fs" />
     <None Include="shadow_mapping.vs" />

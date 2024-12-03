@@ -50,5 +50,10 @@
     <None Include="shadow_mapping_depth.fs" />
     <None Include="quad_debug.vs" />
     <None Include="debug_quad.fs" />
+    <None Include="ps.vs" />
+    <None Include="ps.fs" />
+    <None Include="ps_depth.vs" />
+    <None Include="ps_depth.fs" />
+    <None Include="ps_depth.gs" />
   </ItemGroup>
 </Project>
