@@ -55,5 +55,7 @@
     <None Include="ps_depth.vs" />
     <None Include="ps_depth.fs" />
     <None Include="ps_depth.gs" />
+    <None Include="normal.vs" />
+    <None Include="normal.fs" />
   </ItemGroup>
 </Project>

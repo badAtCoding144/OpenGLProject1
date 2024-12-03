@@ -149,6 +149,8 @@
     <None Include="debug_quad.fs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
+    <None Include="normal.fs" />
+    <None Include="normal.vs" />
     <None Include="ps.fs" />
     <None Include="ps.vs" />
     <None Include="ps_depth.fs" />
