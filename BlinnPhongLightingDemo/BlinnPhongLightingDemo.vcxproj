@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="HDRWindow.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,10 @@
     <None Include="debug_quad.fs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
+    <None Include="HDR.fs" />
+    <None Include="HDR.vs" />
+    <None Include="lighting.fs" />
+    <None Include="lighting.vs" />
     <None Include="normal.fs" />
     <None Include="normal.vs" />
     <None Include="parallax.fs" />
