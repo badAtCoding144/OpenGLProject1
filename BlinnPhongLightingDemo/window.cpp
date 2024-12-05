@@ -28,6 +28,7 @@ void renderQuad();
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
+float heightScale = 0.1f;
 bool shadows = true;
 bool shadowsKeyPressed = false;
 
@@ -96,9 +97,10 @@ int main()
 
 
 
-	const char* texturePath = "Resources/Textures/brickwall.jpg";
+	const char* texturePath = "Resources/Textures/bricks2.jpg";
     unsigned int diffuseMap = loadTexture(texturePath);
-	unsigned int normalMap = loadTexture("Resources/Textures/brickwall_normal.jpg");
+	unsigned int normalMap = loadTexture("Resources/Textures/bricks2_normal.jpg");
+    unsigned int heightMap = loadTexture("Resources/Textures/bricks2_disp.jpg");
 
 
 
@@ -129,6 +131,7 @@ int main()
     shader.use();
     shader.setInt("diffuseMap", 0);
     shader.setInt("normalMap", 1);
+	shader.setInt("depthMap", 2);
 
 
     // lighting info
@@ -138,17 +141,14 @@ int main()
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-        // --------------------
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
         processInput(window);
 
         // render
-        // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -164,6 +164,8 @@ int main()
         shader.setMat4("model", model);
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
+		shader.setFloat("height_scale", 0.1f); // adjust with Q and E keys
+        std::cout << heightScale << std::endl;
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
         glActiveTexture(GL_TEXTURE1);
@@ -178,7 +180,6 @@ int main()
         renderQuad();
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -415,14 +416,19 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && !shadowsKeyPressed)
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
     {
-        shadows = !shadows;
-        shadowsKeyPressed = true;
+        if (heightScale > 0.0f)
+            heightScale -= 0.0005f;
+        else
+            heightScale = 0.0f;
     }
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE)
+    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
     {
-        shadowsKeyPressed = false;
+        if (heightScale < 1.0f)
+            heightScale += 0.0005f;
+        else
+            heightScale = 1.0f;
     }
 }
 
