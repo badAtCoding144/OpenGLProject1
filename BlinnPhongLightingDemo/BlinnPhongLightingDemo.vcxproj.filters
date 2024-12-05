@@ -57,5 +57,7 @@
     <None Include="ps_depth.gs" />
     <None Include="normal.vs" />
     <None Include="normal.fs" />
+    <None Include="parallax.fs" />
+    <None Include="parallax.vs" />
   </ItemGroup>
 </Project>

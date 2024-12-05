@@ -92,7 +92,7 @@ int main()
 
     //normal map shader
 
-	Shader shader("normal.vs", "normal.fs");
+	Shader shader("parallax.vs", "parallax.fs");
 
 
 
