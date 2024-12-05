@@ -99,7 +99,7 @@ int main()
 
 
 
-    const char* texturePath = "Resources/Textures/woodfloor.jpg";
+    const char* texturePath = "Resources/Textures/woodfloor.png";
     unsigned int woodTexture = loadTexture(texturePath,true);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,29 +148,26 @@ int main()
     hdrShader.setInt("hdrBuffer", 0);
 
 
-    // lighting info
-    glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
+ 
 
     // render loop
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
-        // --------------------
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // input
-        // -----
         processInput(window);
 
         // render
-        // ------
+
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // 1. render scene into floating point framebuffer
-        // -----------------------------------------------
+ 
         glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (GLfloat)SCR_WIDTH / (GLfloat)SCR_HEIGHT, 0.1f, 100.0f);
@@ -197,7 +194,7 @@ int main()
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
         // 2. now render floating point color buffer to 2D quad and tonemap HDR colors to default framebuffer's (clamped) color range
-        // --------------------------------------------------------------------------------------------------------------------------
+
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         hdrShader.use();
         glActiveTexture(GL_TEXTURE0);
@@ -209,7 +206,7 @@ int main()
         std::cout << "hdr: " << (hdr ? "on" : "off") << "| exposure: " << exposure << std::endl;
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
