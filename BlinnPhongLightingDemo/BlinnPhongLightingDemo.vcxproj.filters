@@ -27,6 +27,9 @@
     <ClCompile Include="BloomExample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="deferredShading.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -76,5 +79,11 @@
     <None Include="blur.fs" />
     <None Include="FinalBloom.fs" />
     <None Include="FinalBloom.vs" />
+    <None Include="g_buffer.vs" />
+    <None Include="g_buffer.fs" />
+    <None Include="deferred_shading.vs" />
+    <None Include="deferred_shading.fs" />
+    <None Include="deferred_light_box.vs" />
+    <None Include="deferred_light_box.fs" />
   </ItemGroup>
 </Project>

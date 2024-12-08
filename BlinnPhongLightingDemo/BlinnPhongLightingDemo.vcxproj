@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BloomExample.cpp" />
+    <ClCompile Include="deferredShading.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="HDRWindow.cpp" />
     <ClCompile Include="window.cpp" />
@@ -153,10 +154,16 @@
     <None Include="blur.fs" />
     <None Include="blur.vs" />
     <None Include="debug_quad.fs" />
+    <None Include="deferred_light_box.fs" />
+    <None Include="deferred_light_box.vs" />
+    <None Include="deferred_shading.fs" />
+    <None Include="deferred_shading.vs" />
     <None Include="FinalBloom.fs" />
     <None Include="FinalBloom.vs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
+    <None Include="g_buffer.fs" />
+    <None Include="g_buffer.vs" />
     <None Include="HDR.fs" />
     <None Include="HDR.vs" />
     <None Include="lightBox.fs" />
