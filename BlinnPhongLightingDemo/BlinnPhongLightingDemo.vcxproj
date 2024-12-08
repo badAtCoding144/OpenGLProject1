@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BloomExample.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="HDRWindow.cpp" />
     <ClCompile Include="window.cpp" />
