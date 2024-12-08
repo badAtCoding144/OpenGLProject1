@@ -148,11 +148,18 @@
   <ItemGroup>
     <None Include="BlinPhong.fs" />
     <None Include="BlinPhong.vs" />
+    <None Include="bloom.fs" />
+    <None Include="bloom.vs" />
+    <None Include="blur.fs" />
+    <None Include="blur.vs" />
     <None Include="debug_quad.fs" />
+    <None Include="FinalBloom.fs" />
+    <None Include="FinalBloom.vs" />
     <None Include="gamma.fs" />
     <None Include="gamma.vs" />
     <None Include="HDR.fs" />
     <None Include="HDR.vs" />
+    <None Include="lightBox.fs" />
     <None Include="lighting.fs" />
     <None Include="lighting.vs" />
     <None Include="normal.fs" />
