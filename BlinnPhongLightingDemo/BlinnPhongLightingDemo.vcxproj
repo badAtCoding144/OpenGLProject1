@@ -137,6 +137,7 @@
     <ClCompile Include="deferredShading.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="HDRWindow.cpp" />
+    <ClCompile Include="SSAO.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
