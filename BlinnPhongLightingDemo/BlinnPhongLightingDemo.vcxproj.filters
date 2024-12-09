@@ -88,5 +88,11 @@
     <None Include="deferred_shading.fs" />
     <None Include="deferred_light_box.vs" />
     <None Include="deferred_light_box.fs" />
+    <None Include="SSAOGeom.vs" />
+    <None Include="SSAOGeom.fs" />
+    <None Include="SSAO.vs" />
+    <None Include="SSAOLighting.fs" />
+    <None Include="SSAO.fs" />
+    <None Include="SSAOBlur.fs" />
   </ItemGroup>
 </Project>

@@ -184,6 +184,12 @@
     <None Include="shadow_mapping.vs" />
     <None Include="shadow_mapping_depth.fs" />
     <None Include="shadow_mapping_depth.vs" />
+    <None Include="SSAO.fs" />
+    <None Include="SSAO.vs" />
+    <None Include="SSAOBlur.fs" />
+    <None Include="SSAOGeom.fs" />
+    <None Include="SSAOGeom.vs" />
+    <None Include="SSAOLighting.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
