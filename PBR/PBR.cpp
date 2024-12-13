@@ -22,7 +22,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
-unsigned int loadTexture(const char* path, bool gammaCorrection);
+unsigned int loadTexture(const char* path);
 void renderQuad();
 void renderCube();
 void renderSphere();
@@ -90,37 +90,41 @@ int main()
     Shader shader("PBR.vs","PBR.fs");
 
     shader.use();
-	shader.setVec3("albedo", 0.5f, 0.0f, 0.0f);
-	shader.setFloat("ao", 1.0f);
+    shader.setInt("albedoMap", 0);
+    shader.setInt("normalMap", 1);
+    shader.setInt("metallicMap", 2);
+    shader.setInt("roughnessMap", 3);
+    shader.setInt("aoMap", 4);
+
+
+	unsigned int albedo = loadTexture("resources/textures/basecolor.png");
+	unsigned int normal = loadTexture("resources/textures/normal.png");
+	unsigned int metallic = loadTexture("resources/textures/metallic.png");
+	unsigned int roughness = loadTexture("resources/textures/roughness.png");
+	unsigned int ao =  loadTexture("resources/textures/ao.png");
 
 
 
-    //lights
+    // lights
+   // ------
     glm::vec3 lightPositions[] = {
-    glm::vec3(-10.0f,  10.0f, 10.0f),
-    glm::vec3(10.0f,  10.0f, 10.0f),
-    glm::vec3(-10.0f, -10.0f, 10.0f),
-    glm::vec3(10.0f, -10.0f, 10.0f),
+        glm::vec3(0.0f, 0.0f, 10.0f),
     };
     glm::vec3 lightColors[] = {
-        glm::vec3(300.0f, 300.0f, 300.0f),
-        glm::vec3(300.0f, 300.0f, 300.0f),
-        glm::vec3(300.0f, 300.0f, 300.0f),
-        glm::vec3(300.0f, 300.0f, 300.0f)
+        glm::vec3(150.0f, 150.0f, 150.0f),
     };
-	int nrRows = 7;
+    int nrRows = 7;
     int nrColumns = 7;
     float spacing = 2.5;
 
-	glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    // initialize static shader uniforms before rendering
+    // --------------------------------------------------
+    glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
     shader.use();
     shader.setMat4("projection", projection);
-    
-
-
 
     // render loop
-
+    // -----------
     while (!glfwWindowShouldClose(window))
     {
         // per-frame time logic
@@ -143,21 +147,27 @@ int main()
         shader.setMat4("view", view);
         shader.setVec3("camPos", camera.Position);
 
-        // render rows*column number of spheres with varying metallic/roughness values scaled by rows and columns respectively
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, albedo);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, normal);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, metallic);
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, roughness);
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D, ao);
+
+        // render rows*column number of spheres with material properties defined by textures (they all have the same material properties)
         glm::mat4 model = glm::mat4(1.0f);
         for (int row = 0; row < nrRows; ++row)
         {
-            shader.setFloat("metallic", (float)row / (float)nrRows);
             for (int col = 0; col < nrColumns; ++col)
             {
-                // we clamp the roughness to 0.05 - 1.0 as perfectly smooth surfaces (roughness of 0.0) tend to look a bit off
-                // on direct lighting.
-                shader.setFloat("roughness", glm::clamp((float)col / (float)nrColumns, 0.05f, 1.0f));
-
                 model = glm::mat4(1.0f);
                 model = glm::translate(model, glm::vec3(
-                    (col - (nrColumns / 2)) * spacing,
-                    (row - (nrRows / 2)) * spacing,
+                    (float)(col - (nrColumns / 2)) * spacing,
+                    (float)(row - (nrRows / 2)) * spacing,
                     0.0f
                 ));
                 shader.setMat4("model", model);
@@ -190,9 +200,13 @@ int main()
         glfwPollEvents();
     }
 
+    // glfw: terminate, clearing all previously allocated GLFW resources.
+    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }
+
+
 
 
 // renders (and builds at first invocation) a sphere
@@ -452,4 +466,45 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
+}
+
+
+
+// utility function for loading a 2D texture from file
+// ---------------------------------------------------
+unsigned int loadTexture(char const* path)
+{
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+
+    int width, height, nrComponents;
+    unsigned char* data = stbi_load(path, &width, &height, &nrComponents, 0);
+    if (data)
+    {
+        GLenum format;
+        if (nrComponents == 1)
+            format = GL_RED;
+        else if (nrComponents == 3)
+            format = GL_RGB;
+        else if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cout << "Texture failed to load at path: " << path << std::endl;
+        stbi_image_free(data);
+    }
+
+    return textureID;
 }
