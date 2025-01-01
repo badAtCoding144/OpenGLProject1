@@ -51,5 +51,6 @@
     <None Include="cubemap.fs" />
     <None Include="background.vs" />
     <None Include="background.fs" />
+    <None Include="convolution.fs" />
   </ItemGroup>
 </Project>
