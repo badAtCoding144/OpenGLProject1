@@ -21,6 +21,9 @@
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IBL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h">
@@ -42,5 +45,11 @@
   <ItemGroup>
     <None Include="PBR.vs" />
     <None Include="PBR.fs" />
+    <None Include="ibl.vs" />
+    <None Include="ibl.fs" />
+    <None Include="cubemap.vs" />
+    <None Include="cubemap.fs" />
+    <None Include="background.vs" />
+    <None Include="background.fs" />
   </ItemGroup>
 </Project>

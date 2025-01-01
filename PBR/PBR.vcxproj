@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad.c" />
+    <ClCompile Include="IBL.cpp" />
     <ClCompile Include="PBR.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,12 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="background.fs" />
+    <None Include="background.vs" />
+    <None Include="cubemap.fs" />
+    <None Include="cubemap.vs" />
+    <None Include="ibl.fs" />
+    <None Include="ibl.vs" />
     <None Include="PBR.fs" />
     <None Include="PBR.vs" />
   </ItemGroup>
