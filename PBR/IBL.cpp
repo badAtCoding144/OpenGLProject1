@@ -93,9 +93,9 @@
 
         // build and compile shaders
         // -------------------------
-        Shader pbrShader("pbr.vs", "pbr.fs");
+        Shader pbrShader("PBR.vs", "PBR.fs");
         Shader equirectangularToCubemapShader("cubemap.vs", "cubemap.fs");
-        Shader irradianceShader("cubemap.vs", "irradiance_convolution.fs");
+        Shader irradianceShader("cubemap.vs", "convolution.fs");
         Shader prefilterShader("cubemap.vs", "prefilter.fs");
         Shader brdfShader("brdf.vs", "brdf.fs");
         Shader backgroundShader("background.vs", "background.fs");
@@ -709,3 +709,24 @@
         glBindVertexArray(0);
     }
 
+    GLenum glCheckError_(const char* file, int line)
+    {
+        GLenum errorCode;
+        while ((errorCode = glGetError()) != GL_NO_ERROR)
+        {
+            std::string error;
+            switch (errorCode)
+            {
+            case GL_INVALID_ENUM:                  error = "INVALID_ENUM"; break;
+            case GL_INVALID_VALUE:                 error = "INVALID_VALUE"; break;
+            case GL_INVALID_OPERATION:             error = "INVALID_OPERATION"; break;
+            case GL_STACK_OVERFLOW:                error = "STACK_OVERFLOW"; break;
+            case GL_STACK_UNDERFLOW:               error = "STACK_UNDERFLOW"; break;
+            case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
+            case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
+            }
+            std::cout << error << " | " << file << " (" << line << ")" << std::endl;
+        }
+        return errorCode;
+    }
+#define glCheckError() glCheckError_(__FILE__, __LINE__) 
