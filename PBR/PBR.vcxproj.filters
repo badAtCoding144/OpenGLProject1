@@ -52,5 +52,8 @@
     <None Include="background.vs" />
     <None Include="background.fs" />
     <None Include="convolution.fs" />
+    <None Include="brdf.fs" />
+    <None Include="prefilter.fs" />
+    <None Include="brdf.vs" />
   </ItemGroup>
 </Project>

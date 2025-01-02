@@ -146,6 +146,8 @@
   <ItemGroup>
     <None Include="background.fs" />
     <None Include="background.vs" />
+    <None Include="brdf.fs" />
+    <None Include="brdf.vs" />
     <None Include="convolution.fs" />
     <None Include="cubemap.fs" />
     <None Include="cubemap.vs" />
@@ -153,6 +155,7 @@
     <None Include="ibl.vs" />
     <None Include="PBR.fs" />
     <None Include="PBR.vs" />
+    <None Include="prefilter.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
