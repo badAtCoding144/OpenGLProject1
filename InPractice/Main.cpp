@@ -12,11 +12,10 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <ft2build.h>
+#include<freetype/freetype.h>
 
-#ifndef FT_FREETYPE_H
 #define FT_FREETYPE_H
-#endif
-#include FT_FREETYPE_H
+
 
 
 #include "shader.h"
