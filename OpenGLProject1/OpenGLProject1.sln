@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlinnPhongLightingDemo", ".
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PBR", "..\PBR\PBR.vcxproj", "{8B5D76E9-76C9-4EE8-9AC2-F0E59AD33973}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InPractice", "..\InPractice\InPractice.vcxproj", "{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -73,6 +75,14 @@ Global
 		{8B5D76E9-76C9-4EE8-9AC2-F0E59AD33973}.Release|x64.Build.0 = Release|x64
 		{8B5D76E9-76C9-4EE8-9AC2-F0E59AD33973}.Release|x86.ActiveCfg = Release|Win32
 		{8B5D76E9-76C9-4EE8-9AC2-F0E59AD33973}.Release|x86.Build.0 = Release|Win32
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Debug|x64.ActiveCfg = Debug|x64
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Debug|x64.Build.0 = Debug|x64
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Debug|x86.ActiveCfg = Debug|Win32
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Debug|x86.Build.0 = Debug|Win32
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Release|x64.ActiveCfg = Release|x64
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Release|x64.Build.0 = Release|x64
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Release|x86.ActiveCfg = Release|Win32
+		{E6E3904F-2492-4BBF-A8A5-BCB2D4A9743E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
