@@ -9,8 +9,7 @@
 ** option) any later version.
 ******************************************************************/
 #include "sprite_renderer.h"
-#include "shader.h"
-#include "texture.h"
+
 
 SpriteRenderer::SpriteRenderer(Shader& shader)
 {
